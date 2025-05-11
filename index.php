@@ -33,6 +33,7 @@
         </a>
     </div>
     <div class="bar_cutter"></div>
+    <div class="check_btn_cont"><button onclick="checkNews()" id="check_btn">Обновить новости</button></div>
     <?php
     require_once './connect.php';    
     $sort_1 = "SELECT * FROM posts_publications WHERE id_struct LIKE 'mvd%' ORDER BY id_post DESC";
@@ -81,6 +82,25 @@
         <?php
     }
     ?>
+    <script>
+        function checkNews() {
+            
+            fetch('mvd_parser.php') // Отправляем запрос на PHP-скрипт
+                .then(response => response.text())
+                .then(data => {
+                    if (data == "Новых записей нет"){
+                        alert('Новых записей нет');
+                    }else {
+                        location.reload();
+                        alert('Новости обновлены');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при обновлении БД');
+                });
+        }
+    </script>
 </body>
 
 </html>

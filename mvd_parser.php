@@ -2,11 +2,14 @@
 
 require __DIR__ . '/vendor/autoload.php';
 require_once './connect.php';
-
+$flag = 0;
 $url = 'https://54.xn--b1aew.xn--p1ai/news';
 $short_url = 'https://54.xn--b1aew.xn--p1ai';
-$client = new \GuzzleHttp\Client();
-
+$client = new \GuzzleHttp\Client([
+    'headers' => [
+        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+    ]
+]);
 $resp = $client->request('GET', $url);
 $html = $resp->getBody()->getContents();
 
@@ -46,10 +49,16 @@ for ($i = $count - 1; $i >= 0; $i--) {
         VALUES('$id_struct', '$record_date', '$post_date', '$post_head' , '$post_lead' , '$post_body' , '$post_link')";
 
         mysqli_query($connect, $insert_sql);
-        echo "Запись произведена<br>";
+        $flag = 1;
+        //echo "Запись произведена<br>";
     } else {
-        echo "Запись существует<br>";
+        //echo "Запись существует<br>";
         continue;
     }
 }
-echo date('d.m.Y H:i:s', time());
+if ($flag == 1) {
+    echo ("Добавлены новые записи");
+} else {
+    echo ("Новых записей нет");
+}
+//echo date('d.m.Y H:i:s', time());

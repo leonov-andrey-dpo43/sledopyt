@@ -173,3 +173,21 @@ body {
     text-decoration: none;
     color: #000;
 }
+
+#check_btn {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.2em;
+    font-weight: 700;
+    width:200px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.check_btn_cont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
