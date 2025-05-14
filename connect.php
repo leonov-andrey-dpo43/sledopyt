@@ -1,5 +1,5 @@
 <?php	
-	$db_host = 'localhost';
+	$db_host = 'db';
 	$db_user = 'parser_admin';
 	$db_password = '123456';
 	$db_name = 'parser';
