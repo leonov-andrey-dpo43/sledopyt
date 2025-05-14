@@ -35,8 +35,8 @@
     <div class="bar_cutter"></div>
     <div class="check_btn_cont"><button onclick="checkNews()" id="check_btn">Обновить новости</button></div>
     <?php
-    require_once './connect.php';
-    require_once './init_db.php';    
+    require_once 'connect.php';
+    require_once 'init_db.php';    
     $sort_1 = "SELECT * FROM posts_publications WHERE id_struct LIKE 'mvd%' ORDER BY id_post DESC";
     $posts = mysqli_query($connect, $sort_1);
     $posts = mysqli_fetch_all($posts);

@@ -1,13 +1,11 @@
 <?php
 require_once 'connect.php';
 
-$table_name = 'posts_publications'; // Имя вашей таблицы
+$table_name = 'posts_publications'; 
 
-// Проверяем, существует ли таблица
 $result = mysqli_query($connect, "SHOW TABLES LIKE '$table_name'");
 
 if (mysqli_num_rows($result) == 0) {
-    // Таблицы нет — создаём её
     $create_table_sql = "
         CREATE TABLE $table_name (
             id_post BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -23,7 +21,5 @@ if (mysqli_num_rows($result) == 0) {
     
     if (!mysqli_query($connect, $create_table_sql)) {
         die("Ошибка создания таблицы: " . mysqli_error($connect));
-    } else {
-        //echo "Таблица '$table_name' успешно создана.";
-    }
+    } 
 }
