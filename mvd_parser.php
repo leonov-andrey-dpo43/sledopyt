@@ -63,3 +63,4 @@ if ($flag == 1) {
     echo ("Новых записей нет");
 }
 //echo date('d.m.Y H:i:s', time());
+?>
