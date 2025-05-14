@@ -1,8 +1,8 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
-require_once './connect.php';
-require_once './init_db.php';
+require_once 'connect.php';
+require_once 'init_db.php';
 $flag = 0;
 $url = 'https://54.xn--b1aew.xn--p1ai/news';
 $short_url = 'https://54.xn--b1aew.xn--p1ai';

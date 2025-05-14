@@ -23,3 +23,5 @@ if (mysqli_num_rows($result) == 0) {
         die("Ошибка создания таблицы: " . mysqli_error($connect));
     } 
 }
+
+?>
