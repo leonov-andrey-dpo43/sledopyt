@@ -9,7 +9,7 @@ RUN apt update && \
 #Удаляем содержимое корневой папки по умолчанию
 RUN rm -rf /var/www/html/*
 
-RUN docker-php-ext-install dom msqli
+RUN docker-php-ext-install dom mysqli
 
 #Копируем исходный код приложения в корень сайта Apache
 COPY ./my-app /var/www/html/
