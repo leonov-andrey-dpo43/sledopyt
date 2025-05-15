@@ -3,7 +3,7 @@ FROM php:8.1-apache
 
 #Обновляем пакеты и устанавливаем ПО
 RUN apt update && \
-    apt install -y libxml2-dev ca-certificates git curl unzip libcurl4 && \
+    apt install -y libxml2-dev ca-certificates git curl unzip libcurl4 nano && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 #Удаляем содержимое корневой папки по умолчанию
