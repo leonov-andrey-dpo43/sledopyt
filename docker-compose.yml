@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: parser
+      MYSQL_USER: parser_admin
+      MYSQL_PASSWORD: 123456
+    ports:
+          - 3306:3306
+
+  app:
+    image: leonovandreydpo43/sled-app:2.0.1
+    container_name: app-container
+    ports:
+        - 80:80
+    depends_on:
+        - db
