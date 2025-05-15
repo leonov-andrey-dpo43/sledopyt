@@ -1,5 +1,13 @@
 version: '3'
 
+networks:
+  Leonov:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.20.6.0/24
+          gateway: 10.20.6.1
+
 services:
 
   db:
@@ -14,8 +22,11 @@ services:
           - 3306:3306
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      Leonov:
+        ipv4_address: 10.20.6.20
   app:
-    image: leonovandreydpo43/sled-app:2.0.3
+    image: leonovandreydpo43/sled-app:2.0.4
     #build: .
     container_name: app-container
     ports:
@@ -27,6 +38,9 @@ services:
       CUSTOM_LOG_DIR: /home/leonovav/logs/custom-log.txt
     depends_on:
         - db
+    networks:
+      Leonov:
+        ipv4_address: 10.20.6.10
 
 volumes:
   app_data:
