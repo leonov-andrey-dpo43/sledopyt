@@ -19,8 +19,9 @@ RUN chown -R www-data:www-data /var/www/html
 COPY cus-log.conf /etc/apache2/conf.d/
 
 # Копируем скрипт обработки логов
+COPY logger.sh /scripts/
+
 RUN mkdir -p /scripts && \
-    cp ./logger.sh /scripts/ && \
     chmod +x /scripts/logger.sh && \
     chown www-data:www-data /scripts/logger.sh
 
