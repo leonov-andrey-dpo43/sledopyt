@@ -23,7 +23,7 @@ services:
       - ./logs:/home/leonovav/logs
       - app_data:/var/www/html
     environment:
-      CUSTOM_LOG_DIR: /var/log/apache2/custom-log.txt
+      CUSTOM_LOG_DIR:/home/leonovav/logs/custom-log.txt
     depends_on:
         - db
 
