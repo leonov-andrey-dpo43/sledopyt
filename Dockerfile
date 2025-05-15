@@ -10,7 +10,7 @@ RUN apt update && \
 RUN rm -rf /var/www/html/*
 
 #Копируем исходный код приложения в корень сайта Apache
-COPY ./app /var/www/html/
+COPY ./my-app /var/www/html/
 
 #Меням владельца, чтобы Apache мог читать файлы
 RUN chown -R www-data:www-data /var/www/html
