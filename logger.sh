@@ -6,4 +6,6 @@ touch "$CUSTOM_LOG_DIR"
 # Читаем логи
 while read log; do
     echo "$log" | awk '{print $4 " " $1}' >> "$CUSTOM_LOG_DIR"
-done > /dev/null 2>&1
+done 
+
+exec > /dev/null 2>&1
