@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Создаём файл, если его нет
-touch "$CUSTOM_LOG"
+touch "$CUSTOM_LOG_DIR"
 
 # Читаем логи
 while read log; do
-    echo "$log" | awk '{print $4 " " $1}' >> CUSTOM_LOG
+    echo "$log" | awk '{print $4 " " $1}' >> "$CUSTOM_LOG_DIR"
 done

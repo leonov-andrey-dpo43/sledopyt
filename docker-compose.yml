@@ -18,5 +18,11 @@ services:
     container_name: app-container
     ports:
         - 80:80
+    volumes:
+      - ./logs:/var/log/apache2
+      - app:/var/www/html
+    environment:
+      # Переменная окружения с путём к логам
+      CUSTOM_LOG_DIR: /var/log/apache2/custom-log.txt
     depends_on:
         - db
