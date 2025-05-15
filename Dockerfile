@@ -18,7 +18,7 @@ COPY ./my-app /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 # Копируем конфиг Apache
-COPY cus-log.conf /etc/apache2/conf.d/
+COPY 000-default.conf /etc/apache2/sites-available
 
 # Копируем скрипт обработки логов
 COPY logger.sh /scripts/
