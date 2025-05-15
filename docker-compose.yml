@@ -15,7 +15,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
   app:
-    image: leonovandreydpo43/sled-app:2.0.1
+    image: leonovandreydpo43/sled-app:2.0.2
     container_name: app-container
     ports:
         - 80:80
