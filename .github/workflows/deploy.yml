@@ -22,8 +22,8 @@ jobs:
       
       - name: Подключение к серверу через SSH
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -y
-          ${{ secrets.SSH_PASSWORD }} -y
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          ${{ secrets.SSH_PASSWORD }}
         
       - name: Деплой на сервер через SSH  
         run: |
