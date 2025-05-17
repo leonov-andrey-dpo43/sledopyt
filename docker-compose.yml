@@ -27,7 +27,6 @@ services:
         ipv4_address: 10.20.6.20
   app:
     image: leonovandreydpo43/sled-app:latest
-    #build: .
     container_name: app-container
     ports:
         - 80:80
