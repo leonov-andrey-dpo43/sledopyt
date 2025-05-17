@@ -19,11 +19,6 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push leonovandreydpo43/sled-app:latest
-      
-      - name: Подключение к серверу через SSH
-        run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-          ${{ secrets.SSH_PASSWORD }}
         
       - name: Деплой на сервер через SSH  
         uses: appleboy/ssh-action@master
