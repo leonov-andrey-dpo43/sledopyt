@@ -18,12 +18,12 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_ENV
           
       - name: Сборка образа
-        run: docker build --no-cache -t leonovandreydpo43/sled-app:${{ env.TAG }} .
+        run: docker build --no-cache -t leonovandreydpo43/sled-app:latest .
         
       - name: Авторизация и отправкка образа в Docker Hub        
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push leonovandreydpo43/sled-app:${{ env.TAG }}          
+          docker push leonovandreydpo43/sled-app:latest          
       
       - name: Деплой на сервер через SSH  
         uses: appleboy/ssh-action@master
@@ -33,10 +33,6 @@ jobs:
           password: ${{ secrets.SSH_PASS }} 
           port: ${{ secrets.SSH_PORT }}
           script: |
-
-            #Передача тега версии в переменную окружения
-            export TAG=${{ env.TAG }}
-            
             echo "Подключаемся к серверу и обновляем проект..."
             cd /home/sledopyt || (echo "Папка не найдена" && exit 1)
 
