@@ -66,7 +66,7 @@
         ?>
 
         <div class="post_item" id="app">
-            <?= '<div class="mvd">ГУ МВД России по Новосибирской области</div>' ?>
+            <?= '<div class="skrf">ГУ МВД России по Новосибирской области</div>' ?>
             <div class="post_title">
                 <?= '<a target="_blank" href="' . $post[7] . '" class="link_title">' ?>     <?= $post[4] ?></a>
             </div>
