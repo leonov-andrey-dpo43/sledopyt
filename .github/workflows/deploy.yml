@@ -7,13 +7,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    env:
+      TAG: $(date +"%Y%m%d-%H%M%S")
     steps:
       - name: Checkout код
         uses: actions/checkout@v4
 
       - name: Сборка образа
-        run: docker build --no-cache -t leonovandreydpo43/sled-app:latest .
+        run: docker build --no-cache -t leonovandreydpo43/sled-app:${TAG} .
         
       - name: Авторизация и отправкка образа в Docker Hub        
         run: |
