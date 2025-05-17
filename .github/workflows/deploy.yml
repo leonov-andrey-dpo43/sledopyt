@@ -48,13 +48,16 @@ jobs:
   
             echo "Останавливаем старые контейнеры..."
             docker-compose down
-  
+
+            echo "Удаляем том с приложением"
+            docker volume rm app_data
+            
             echo "Скачиваем новый образ..."
             docker-compose pull
   
             echo "Запускаем сервисы..."
             docker-compose up -d --build --force-recreate
 
-            # Очистка
+            echo "Очистка неиспользуемых образов и контейнеров"
             docker container prune -f
             docker image prune -a -f
