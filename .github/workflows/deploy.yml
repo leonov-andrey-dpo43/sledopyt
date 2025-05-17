@@ -11,12 +11,7 @@ jobs:
     steps:
       - name: Checkout код
         uses: actions/checkout@v4
-        
-      - name: Установка тега версии образа
-        run: |
-          TAG=$(date +"%Y%m%d-%H%M%S")
-          echo "TAG=$TAG" >> $GITHUB_ENV
-          
+      
       - name: Сборка образа
         run: docker build --no-cache -t leonovandreydpo43/sled-app:latest .
         
