@@ -30,10 +30,11 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}  # или private_key
+          password: ${{ secrets.SSH_PASS }} 
           port: ${{ secrets.SSH_PORT }}
           script: |
 
+            #Передача тега версии в переменную окружения
             export TAG=${{ env.TAG }}
             
             echo "Подключаемся к серверу и обновляем проект..."
