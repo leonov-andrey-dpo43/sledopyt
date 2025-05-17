@@ -26,18 +26,24 @@ jobs:
           ${{ secrets.SSH_PASSWORD }}
         
       - name: Деплой на сервер через SSH  
-        run: |
-          echo "Подключаемся к серверу и обновляем проект..."
-          cd /home || (echo "Папка не найдена" && exit 1)
-
-          echo "Стягиваем последние изменения..."
-          git pull origin main
-
-          echo "Останавливаем старые контейнеры..."
-          docker-compose down
-
-          echo "Скачиваем новый образ..."
-          docker-compose pull
-
-          echo "Запускаем сервисы..."
-          docker-compose up -d
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}  # или private_key
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "Подключаемся к серверу и обновляем проект..."
+            cd /home || (echo "Папка не найдена" && exit 1)
+  
+            echo "Стягиваем последние изменения..."
+            git pull origin main
+  
+            echo "Останавливаем старые контейнеры..."
+            docker-compose down
+  
+            echo "Скачиваем новый образ..."
+            docker-compose pull
+  
+            echo "Запускаем сервисы..."
+            docker-compose up -d
