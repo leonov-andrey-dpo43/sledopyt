@@ -30,7 +30,11 @@ jobs:
           script: |
             echo "Подключаемся к серверу и обновляем проект..."
             cd /home/sledopyt || (echo "Папка не найдена" && exit 1)
-  
+
+            echo "Сбрасываем локальные изменения..."
+            git reset --hard HEAD
+            git clean -fd
+            
             echo "Стягиваем последние изменения..."
             git pull origin main
   
