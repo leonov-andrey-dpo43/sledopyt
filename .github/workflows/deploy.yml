@@ -19,7 +19,7 @@ jobs:
       - name: Авторизация в Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          username: leonovandreydpo43
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Собрать и отправить образ на Docker Hub
