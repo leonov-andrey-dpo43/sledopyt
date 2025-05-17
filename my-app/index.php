@@ -13,7 +13,7 @@
     <div class="nav_bar">
         <a href="#" class="bar_active_link">
             <div class="active_bar_item left_bar_item bar_text">
-                МВД РФ
+                МВД
             </div>
         </a>
         <a href="#" class="bar_no_active_link">
@@ -66,7 +66,7 @@
         ?>
 
         <div class="post_item" id="app">
-            <?= '<div class="skrf">ГУ МВД России по Новосибирской области</div>' ?>
+            <?= '<div class="mvd">ГУ МВД России по Новосибирской области</div>' ?>
             <div class="post_title">
                 <?= '<a target="_blank" href="' . $post[7] . '" class="link_title">' ?>     <?= $post[4] ?></a>
             </div>
