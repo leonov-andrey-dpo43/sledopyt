@@ -1,4 +1,4 @@
-name: Deploy with Docker Compose
+name: Deploy
 
 on:
   push:
@@ -7,46 +7,37 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - name: Checkout код
         uses: actions/checkout@v4
 
-      - name: Установить Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Сборка образа
+        run: docker build ./my-app -t leonovandreydpo43/sled-app:latest
 
-      - name: Авторизация в Docker Hub
-        #uses: docker/login-action@v3
-        #with:
-        #  username: leonovandreydpo43
-        #  password: 
+      - name: Авторизация и отправкка образа в Docker Hub        
         run: |
-          docker login -u leonovandreydpo43 -p Nagoya8152
-      - name: Собрать и отправить образ на Docker Hub
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ DOCKER_HUB_TOKEN }}
+          docker push leonovandreydpo43/sled-app:latest
+      
+      - name: Подключение к серверу через SSH
         run: |
-          docker-compose build
-          docker-compose push
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -y
+          ${{ secrets.SSH_PASSWORD }} -y
+        
+      - name: Деплой на сервер через SSH  
+        run: |
+          echo "Подключаемся к серверу и обновляем проект..."
+          cd /home || (echo "Папка не найдена" && exit 1)
 
-      - name: Деплой на сервер через SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            echo "Подключаемся к серверу и обновляем проект..."
-            cd /home/user/myproject || (echo "Папка не найдена" && exit 1)
+          echo "Стягиваем последние изменения..."
+          git pull origin main
 
-            echo "Стягиваем последние изменения..."
-            git pull origin main
+          echo "Останавливаем старые контейнеры..."
+          docker-compose down
 
-            echo "Останавливаем старые контейнеры..."
-            docker-compose down
+          echo "Скачиваем новый образ..."
+          docker-compose pull
 
-            echo "Скачиваем новый образ..."
-            docker-compose pull
-
-            echo "Запускаем сервисы..."
-            docker-compose up -d
+          echo "Запускаем сервисы..."
+          docker-compose up -d
