@@ -40,7 +40,8 @@ body {
 
 .mvd {
     color: #fff;
-    background-color: #1a2855;
+    #background-color: #1a2855;
+    background-color: #ab1926;
     border-radius: 20px;
     padding: 5px;
     padding-left: 10px;
