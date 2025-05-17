@@ -33,5 +33,5 @@ RUN mkdir -p /scripts && \
 #Открываем порт 80
 EXPOSE 80
 
-#Запускаем Apache
+#Запускаем Apache2
 CMD ["apache2ctl", "-D", "FOREGROUND"]
