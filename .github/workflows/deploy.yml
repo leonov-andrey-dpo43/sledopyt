@@ -34,7 +34,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
 
-            export TAAAAAAG=${{ env.TAG }}
+            export TAG=${{ env.TAG }}
             
             echo "Подключаемся к серверу и обновляем проект..."
             cd /home/sledopyt || (echo "Папка не найдена" && exit 1)
