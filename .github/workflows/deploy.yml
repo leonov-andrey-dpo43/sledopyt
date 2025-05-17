@@ -54,7 +54,9 @@ jobs:
             
             echo "Скачиваем новый образ..."
             docker-compose pull
-  
+            
+            echo "TAG = [$TAG]"
+            
             echo "Запускаем сервисы..."
             docker-compose up -d --build --force-recreate
 
