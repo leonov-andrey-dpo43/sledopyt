@@ -50,12 +50,10 @@ jobs:
             docker-compose down
 
             echo "Удаляем том с приложением"
-            docker volume rm app_data
+            docker volume rm sledopyt_app_data
             
             echo "Скачиваем новый образ..."
             docker-compose pull
-            
-            echo "TAG = [$TAG]"
             
             echo "Запускаем сервисы..."
             docker-compose up -d --build --force-recreate
