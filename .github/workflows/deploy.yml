@@ -19,7 +19,7 @@ jobs:
       - name: Авторизация и отправкка образа в Docker Hub        
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push leonovandreydpo43/sled-app:latest
+          docker push leonovandreydpo43/sled-app:${{ env.TAG}}
         
       - name: Деплой на сервер через SSH  
         uses: appleboy/ssh-action@master
