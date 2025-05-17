@@ -13,7 +13,7 @@
     <div class="nav_bar">
         <a href="#" class="bar_active_link">
             <div class="active_bar_item left_bar_item bar_text">
-                МВД
+                МВД России
             </div>
         </a>
         <a href="#" class="bar_no_active_link">
