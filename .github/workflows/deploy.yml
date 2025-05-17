@@ -29,7 +29,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             echo "Подключаемся к серверу и обновляем проект..."
-            cd /home || (echo "Папка не найдена" && exit 1)
+            cd /home/sledopyt || (echo "Папка не найдена" && exit 1)
   
             echo "Стягиваем последние изменения..."
             git pull origin main
