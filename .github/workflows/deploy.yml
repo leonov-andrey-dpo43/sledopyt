@@ -45,4 +45,4 @@ jobs:
             docker-compose pull
   
             echo "Запускаем сервисы..."
-            docker-compose up -d
+            docker-compose up -d --build --force-recreate
