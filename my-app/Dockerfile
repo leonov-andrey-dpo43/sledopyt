@@ -20,6 +20,9 @@ RUN chown -R www-data:www-data /var/www/html
 # Копируем конфиг Apache
 COPY 000-default.conf /etc/apache2/sites-available
 
+# Создаём каталог для скрипта обработки логов
+RUN mkdir -p /scripts && \
+
 # Копируем скрипт обработки логов
 COPY logger.sh /scripts/
 
