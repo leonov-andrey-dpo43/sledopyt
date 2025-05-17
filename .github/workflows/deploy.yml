@@ -7,20 +7,27 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      TAG: $(date +"%Y%m%d-%H%M%S")
+    
     steps:
       - name: Checkout код
         uses: actions/checkout@v4
 
       - name: Сборка образа
-        run: docker build --no-cache -t leonovandreydpo43/sled-app:${{ env.TAG}} .
+        run: |
+          TAG=$(date +"%Y%m%d-%H%M%S")
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          docker build --no-cache -t leonovandreydpo43/sled-app:${{ env.TAG}} .
         
       - name: Авторизация и отправкка образа в Docker Hub        
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push leonovandreydpo43/sled-app:${{ env.TAG}}
-        
+          
+      - name: Передаем TAG в другой docker-compose.yml
+        uses: ./docker-compose.yml
+        with:
+          tag: ${{ env.TAG }} 
+          
       - name: Деплой на сервер через SSH  
         uses: appleboy/ssh-action@master
         with:
